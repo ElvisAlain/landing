@@ -1,17 +1,18 @@
-/* src/App.css */
+/* src/App.css (Asegúrate de mantener tus variables de color y fuentes hasta arriba) */
+
 .main-wrapper {
   padding: 0 40px;
 }
 
-/* Hero Section - Minimalismo centralizado */
+/* --- HERO SECTION MODIFICADO --- */
 .hero-section {
-  min-height: 80vh;
+  min-height: 50vh; /* Antes era 80vh, ahora ocupa la mitad de la pantalla */
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 100px 0;
-  background-color: var(--color-dark); /* Hero fondo oscuro */
+  padding: 80px 0 120px 0; /* Menos padding superior */
+  background-color: var(--color-dark); 
 }
 
 .hero-content {
@@ -20,16 +21,16 @@
 
 .hero-tag {
   color: var(--color-subtle);
-  font-size: 0.9rem;
-  letter-spacing: 0.15em;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-bottom: 20px;
 }
 
 .hero-giant-title {
-  font-size: 5.5rem; /* Tamaño monumental estilo Squarespace */
+  font-size: 4.8rem; /* Un pelín más pequeño para que quepa bien */
   line-height: 1.05;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .hero-giant-title .italic {
@@ -40,7 +41,7 @@
 }
 
 .hero-statement {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 300;
   color: var(--color-light);
   opacity: 0.8;
@@ -48,92 +49,112 @@
   margin: 0 auto;
 }
 
-/* Portfolio Section - Layout Superpuesto */
+/* --- PORTFOLIO SECTION --- */
 .portfolio-section {
-  padding: 150px 0;
-  background-color: #F8F8F8; /* Fondo claro para las tarjetas */
-  color: var(--color-dark); /* Texto oscuro en esta sección */
+  padding: 100px 0 150px 0;
+  background-color: #F8F8F8; 
+  color: var(--color-dark); 
   position: relative;
 }
 
-/* Esto crea un efecto de "revelación" al hacer scroll */
 .portfolio-section::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100px;
+  height: 80px;
   background-color: var(--color-dark);
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);
 }
 
 .section-title {
   text-align: center;
-  font-size: 2.8rem;
-  margin-bottom: 120px;
+  font-size: 2.5rem;
+  margin-bottom: 80px; /* Reducido para acercar las tarjetas */
   position: relative;
   z-index: 10;
 }
 
-/* Dynamic Grid con efecto de superposición */
+/* Dynamic Grid */
 .dynamic-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 60px;
-  max-width: 1100px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
   position: relative;
 }
 
-/* Estilo Base de las Cards */
-.portfolio-card {
-  padding: 60px 50px;
-  border-radius: 4px;
-  position: relative;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  z-index: 5;
+/* --- ANIMACIONES Y CARDS --- */
+@keyframes fadeUpAnim {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+.portfolio-card {
+  padding: 50px 40px;
+  border-radius: 6px;
+  position: relative;
+  z-index: 5;
+  
+  /* Animación inicial */
+  opacity: 0;
+  animation: fadeUpAnim 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  
+  /* Transición suave para el hover */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Delays escalonados para que aparezcan una por una */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+.delay-6 { animation-delay: 0.6s; }
 
 .portfolio-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+  z-index: 20; /* Se viene al frente al hacer hover */
 }
 
-/* Card Crema (Sobre fondo claro, es más sutil) */
+/* Colores de Cards */
 .portfolio-card.cream {
   background-color: #FFFFFF;
   border: 1px solid #EEEEEE;
 }
 
-/* Card Oscura (Superposición dramática) */
 .portfolio-card.dark {
   background-color: var(--color-dark);
   color: var(--color-light);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-  z-index: 10; /* La card oscura siempre sobresale */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-/* Efecto de offset - Esto logra el look Squarespace */
-.portfolio-card.offset-down {
-  transform: translateY(60px);
+/* El nuevo sistema de Offset usando margin para no pelear con transform de la animación */
+.offset-down {
+  margin-top: 40px;
 }
-.portfolio-card.offset-up {
-  transform: translateY(-60px);
-}
-
-.portfolio-card.offset-down:hover, 
-.portfolio-card.offset-up:hover {
-  transform: translateY(0) scale(1.02);
+.offset-up {
+  margin-top: -40px;
 }
 
+/* Textos dentro de la Card */
 .card-type {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-subtle);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 
 .portfolio-card.dark .card-type {
@@ -141,24 +162,24 @@
 }
 
 .card-title {
-  font-size: 2.2rem;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  margin-bottom: 15px;
 }
 
 .card-description {
   font-size: 0.95rem;
   font-weight: 300;
   opacity: 0.9;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .view-project-btn {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-accent);
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   position: relative;
-  padding-bottom: 5px;
+  padding-bottom: 4px;
 }
 
 .view-project-btn::after {
@@ -176,9 +197,9 @@
   width: 0%;
 }
 
-/* Refined Footer */
+/* --- FOOTER --- */
 .refined-footer {
-  padding: 100px 40px;
+  padding: 80px 40px;
   background-color: var(--color-dark);
   color: var(--color-light);
   display: flex;
@@ -193,10 +214,11 @@
   font-size: 1rem;
   letter-spacing: 0.05em;
   color: var(--color-accent);
+  margin-bottom: 10px;
 }
 
 .stack-block p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--color-subtle);
 }
 
@@ -206,15 +228,10 @@
   font-size: 0.9rem;
 }
 
-/* Responsive */
+/* Responsive Ajustes */
 @media (max-width: 768px) {
-  .hero-giant-title {
-    font-size: 3.2rem;
-  }
-  .dynamic-grid {
-    gap: 40px;
-  }
-  .portfolio-card.offset-down, .portfolio-card.offset-up {
-    transform: translateY(0);
-  }
+  .hero-giant-title { font-size: 3rem; }
+  .dynamic-grid { gap: 30px; }
+  /* En móviles quitamos el zig-zag para que se vea ordenado hacia abajo */
+  .offset-down, .offset-up { margin-top: 0; }
 }
