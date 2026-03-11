@@ -1,0 +1,49 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  /* Paleta Premium Sofisticada */
+  --color-dark: #0A0A0A;      /* Negro carbón ultra profundo */
+  --color-light: #FDFDF8;     /* Crema ultra suave (como papel de lino) */
+  --color-accent: #C7B299;    /* Tono arena suave (golden/taupe) */
+  --color-subtle: #777777;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-dark); /* Fondo oscuro general */
+  color: var(--color-light);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: 'Baskervville', serif; /* Fuente con serifa audaz y clásica */
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5em;
+}
+
+p {
+  font-weight: 300;
+  opacity: 0.9;
+  margin-bottom: 1.5em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-accent);
+}

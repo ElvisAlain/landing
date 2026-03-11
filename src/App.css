@@ -1,0 +1,220 @@
+/* src/App.css */
+.main-wrapper {
+  padding: 0 40px;
+}
+
+/* Hero Section - Minimalismo centralizado */
+.hero-section {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 100px 0;
+  background-color: var(--color-dark); /* Hero fondo oscuro */
+}
+
+.hero-content {
+  max-width: 900px;
+}
+
+.hero-tag {
+  color: var(--color-subtle);
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero-giant-title {
+  font-size: 5.5rem; /* Tamaño monumental estilo Squarespace */
+  line-height: 1.05;
+  margin-bottom: 30px;
+}
+
+.hero-giant-title .italic {
+  font-style: italic;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  opacity: 0.6;
+}
+
+.hero-statement {
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--color-light);
+  opacity: 0.8;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Portfolio Section - Layout Superpuesto */
+.portfolio-section {
+  padding: 150px 0;
+  background-color: #F8F8F8; /* Fondo claro para las tarjetas */
+  color: var(--color-dark); /* Texto oscuro en esta sección */
+  position: relative;
+}
+
+/* Esto crea un efecto de "revelación" al hacer scroll */
+.portfolio-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: var(--color-dark);
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 120px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Dynamic Grid con efecto de superposición */
+.dynamic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+}
+
+/* Estilo Base de las Cards */
+.portfolio-card {
+  padding: 60px 50px;
+  border-radius: 4px;
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  z-index: 5;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+}
+
+/* Card Crema (Sobre fondo claro, es más sutil) */
+.portfolio-card.cream {
+  background-color: #FFFFFF;
+  border: 1px solid #EEEEEE;
+}
+
+/* Card Oscura (Superposición dramática) */
+.portfolio-card.dark {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  z-index: 10; /* La card oscura siempre sobresale */
+}
+
+/* Efecto de offset - Esto logra el look Squarespace */
+.portfolio-card.offset-down {
+  transform: translateY(60px);
+}
+.portfolio-card.offset-up {
+  transform: translateY(-60px);
+}
+
+.portfolio-card.offset-down:hover, 
+.portfolio-card.offset-up:hover {
+  transform: translateY(0) scale(1.02);
+}
+
+.card-type {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-subtle);
+  margin-bottom: 10px;
+}
+
+.portfolio-card.dark .card-type {
+  color: var(--color-accent);
+}
+
+.card-title {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  font-weight: 300;
+  opacity: 0.9;
+  margin-bottom: 40px;
+}
+
+.view-project-btn {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.view-project-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.view-project-btn:hover::after {
+  width: 0%;
+}
+
+/* Refined Footer */
+.refined-footer {
+  padding: 100px 40px;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  border-top: 1px solid #1A1A1A;
+}
+
+.stack-block h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+}
+
+.stack-block p {
+  font-size: 1.1rem;
+  color: var(--color-subtle);
+}
+
+.links-block {
+  display: flex;
+  gap: 30px;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-giant-title {
+    font-size: 3.2rem;
+  }
+  .dynamic-grid {
+    gap: 40px;
+  }
+  .portfolio-card.offset-down, .portfolio-card.offset-up {
+    transform: translateY(0);
+  }
+}
